@@ -117,6 +117,7 @@ class RadioTest {
         //проверка ожидаемого и фактического результата
         assertEquals(expected, actual);
     }
+
     //увеличение радиостанции, если вводим значение меньше границ
     @Test
     void nextNumberStationLesse0Test() {
@@ -127,6 +128,7 @@ class RadioTest {
         //проверка ожидаемого и фактического результата
         assertEquals(expected, actual);
     }
+
     //увеличение радиостанции, если вводим значение = countStation
     @Test
     void nextNumberStationCountTest() {
@@ -137,47 +139,48 @@ class RadioTest {
         //проверка ожидаемого и фактического результата
         assertEquals(expected, actual);
     }
+
     //уменьшение радиостанции, если вводим значение в границах
-      @Test
-       void prevNumberStationTest() {
-       radio.prevNumberStation();
-         int expected = 2;
-       int actual = radio.getNumberCurrentStation();
-    //проверка ожидаемого и фактического результата
-          assertEquals(expected, actual);
-      }
+    @Test
+    void prevNumberStationTest() {
+        radio.prevNumberStation();
+        int expected = 2;
+        int actual = radio.getNumberCurrentStation();
+        //проверка ожидаемого и фактического результата
+        assertEquals(expected, actual);
+    }
 
     //уменьшение радиостанции, если минимальное значение (0)
-     @Test
-     void prevNumberStation0Test() {
-       radio.setNumberCurrentStation(0);
-         radio.prevNumberStation();
-      int expected = 9;
+    @Test
+    void prevNumberStation0Test() {
+        radio.setNumberCurrentStation(0);
+        radio.prevNumberStation();
+        int expected = 9;
         int actual = radio.getNumberCurrentStation();
-    //проверка ожидаемого и фактического результата
-         assertEquals(expected, actual);
-      }
+        //проверка ожидаемого и фактического результата
+        assertEquals(expected, actual);
+    }
 
     //уменьшение радиостанции, если вводим больше countStation
-      @Test
-      void prevNumberStationMoreTest() {
+    @Test
+    void prevNumberStationMoreTest() {
         radio.setNumberCurrentStation(22);
         radio.prevNumberStation();
         int expected = 2;
         int actual = radio.getNumberCurrentStation();
-    //проверка ожидаемого и фактического результата
-       assertEquals(expected, actual);
-     }
+        //проверка ожидаемого и фактического результата
+        assertEquals(expected, actual);
+    }
 
     //уменьшение радиостанции, если вводим меньше 0
-      @Test
-      void decreaseNumberStationLesse0Test() {
-         radio.setNumberCurrentStation(-5);
-         radio.prevNumberStation();
-       int expected = 2;
-    int actual = radio.getNumberCurrentStation();
-    //проверка ожидаемого и фактического результата
+    @Test
+    void decreaseNumberStationLesse0Test() {
+        radio.setNumberCurrentStation(-5);
+        radio.prevNumberStation();
+        int expected = 2;
+        int actual = radio.getNumberCurrentStation();
+        //проверка ожидаемого и фактического результата
         assertEquals(expected, actual);
-     }
+    }
 }
 
