@@ -1,86 +1,73 @@
 package ru.netology.radio;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+
 public class Radio {
     //громкость звука
-    private int currentSoundVolume;
+    private int currentSoundVolume = 5;
     //номер радиостанции
-    private int numberCurrentStation;
+    private int numberCurrentStation = 3;
+    //количество радиостанций
+    private int countStation = 10;
+
+    //конструктор с параметрами
+    public Radio(int countStation) {
+        this.countStation = countStation;
+    }
 
     //ГРОМКОСТЬ ЗВУКА
-    //возвращаем значение приватного поля громкость звука
-    public int getCurrentSoundVolume() {
-        return currentSoundVolume;
-    }
-
-    //устанавливаем новое значение приватного поля громкость звука
-    public void setCurrentSoundVolume(int newCurrentSoundVolume) {
-        currentSoundVolume = newCurrentSoundVolume;
-    }
-
     //увеличение громкости звука
-    public int increaseSoundVolume() {
-        if (currentSoundVolume < 10) {
+    public int nextSoundVolume() {
+        if (currentSoundVolume < 100) {
             currentSoundVolume = currentSoundVolume + 1;
         } else
             currentSoundVolume = getCurrentSoundVolume();
         return currentSoundVolume;
     }
-
     //уменьшение громкости звука
-    public int decreaseSoundVolume() {
+    public int prevSoundVolume() {
         if (currentSoundVolume > 0) {
             currentSoundVolume = currentSoundVolume - 1;
         } else
             currentSoundVolume = getCurrentSoundVolume();
         return currentSoundVolume;
     }
-
     //РАДИОСТАНЦИИ
-    //возвращаем значение приватного поля радиостанция
-    public int getNumberCurrentStation() {
-        return numberCurrentStation;
+    //устанавливаем новое значение приватного поля номер радиостанции
+    public void setNumberCurrentStation(int numberCurrentStation) {
+        if (numberCurrentStation <= getMaxNumberStation() && numberCurrentStation >= 0) {
+            this.numberCurrentStation = numberCurrentStation;
+        }
     }
-
-    //устанавливаем новое значение приватного поля радиостанция
-    public void setNumberCurrentStation(int newNumberCurrentStation) {
-        if (newNumberCurrentStation <= 9 && newNumberCurrentStation >= 0) {
-            numberCurrentStation = newNumberCurrentStation;
-        } else
-            numberCurrentStation = getNumberCurrentStation();
+   //возвращаем значение номер максимальной радиостанции
+    public int getMaxNumberStation() {
+        int maxNumberStation = countStation - 1;
+        return maxNumberStation;
     }
-
     //увеличение радиостанции
-    public int increaseNumberStation() {
-        if (numberCurrentStation < 9) {
+    public int nextNumberStation() {
+        if (numberCurrentStation < getMaxNumberStation()) {
             numberCurrentStation = numberCurrentStation + 1;
-        } else
-            numberCurrentStation = increaseNumberStation9();
-        return numberCurrentStation;
-    }
-
-    //увеличение радиостанции если она = 9
-    public int increaseNumberStation9() {
-        if (numberCurrentStation == 9) {
+        }
+        if (numberCurrentStation == getMaxNumberStation()) {
             numberCurrentStation = 0;
         }
         return numberCurrentStation;
     }
-
     //уменьшение радиостанции
-    public int decreaseNumberStation() {
+    public int prevNumberStation() {
         if (numberCurrentStation > 0) {
             numberCurrentStation = numberCurrentStation - 1;
-        } else
-            numberCurrentStation = decreaseNumberStation0();
-        return numberCurrentStation;
-    }
-
-    //уменьшение радиостанции если она = 0
-    public int decreaseNumberStation0() {
+        }
         if (numberCurrentStation == 0) {
-            numberCurrentStation = 9;
+            numberCurrentStation = getMaxNumberStation();
         }
         return numberCurrentStation;
     }
-
 }
